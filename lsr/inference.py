@@ -1,5 +1,6 @@
 from lsr.models import DualSparseEncoder
 from lsr.tokenizer import Tokenizer
+from lsr.utils.parsewt10g import read_wt10g_dataset
 import torch
 from tqdm import tqdm
 from pathlib import Path
@@ -72,6 +73,10 @@ def inference(cfg: DictConfig,):
                         text = line["text"].strip()
                     ids.append(idx)
                     texts.append(text)
+    elif cfg.input_format == "wt10g":
+        docs = read_wt10g_dataset(cfg.input_path)
+        ids = list(docs.keys())
+        texts = list(docs.values())
     else:
         dataset = ir_datasets.load(cfg.input_path)
         if cfg.type == "query":
@@ -90,6 +95,7 @@ def inference(cfg: DictConfig,):
                 ids.append(idx)
                 texts.append(text)
     assert len(ids) == len(texts)
+    print(f"{len(texts)} texts loaded")
     all_token_ids = list(range(tokenizer.get_vocab_size()))
     all_tokens = np.array(tokenizer.convert_ids_to_tokens(all_token_ids))
     for idx in tqdm(range(0, len(ids), cfg.batch_size)):

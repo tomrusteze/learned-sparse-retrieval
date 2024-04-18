@@ -41,6 +41,7 @@ def read_collection(collection_path: str, text_fields=["text"]):
             for line in tqdm(f, desc=f"Reading doc collection from {collection_path}"):
                 doc_id, doc_text = line.strip().split("\t")
                 doc_dict[doc_id] = doc_text
+    print(f"Number of documents: {len(doc_dict)}")
     return doc_dict
 
 
@@ -80,6 +81,7 @@ def read_qrels(qrels_path: str, rel_threshold=0):
         qrels = json.load(open(qrels_path, "r"))
         for qid in qrels:
             qid2pos[str(qid)] = [str(did) for did in qrels[qid]]
+    print(f"Number of qrels: {len(qid2pos)}")
     return qid2pos
 
 
