@@ -6,6 +6,9 @@ from pprint import pprint
 import logging
 import wandb
 import os
+from codecarbon import EmissionsTracker
+
+# Compute intensive training code goes here
 
 logger = logging.getLogger(__name__)
 
@@ -30,4 +33,5 @@ def train(conf: DictConfig):
 
 
 if __name__ == "__main__":
-    train()
+    with EmissionsTracker() as tracker:
+        train()

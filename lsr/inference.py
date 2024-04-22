@@ -15,6 +15,7 @@ import time
 import datetime
 import logging
 import ir_datasets
+from codecarbon import EmissionsTracker
 
 logger = logging.getLogger(__name__)
 
@@ -167,7 +168,8 @@ def inference(cfg: DictConfig,):
 
 if __name__ == "__main__":
     start_time = time.time()
-    inference()
+    with EmissionsTracker() as tracker:
+        inference()
     run_time = time.time() - start_time
     logger.log(
         msg=f"Finished! Runing time {str(datetime.timedelta(seconds=666))}", level=1)
