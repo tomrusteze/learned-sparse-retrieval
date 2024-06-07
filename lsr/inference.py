@@ -97,6 +97,12 @@ def inference(cfg: DictConfig,):
                 texts.append(text)
     assert len(ids) == len(texts)
     print(f"{len(texts)} texts loaded")
+    average_length = sum([len(text.split()) for text in texts]) / len(texts)
+    average_distinct_words = sum([len(list(set(text.split()))) for text in texts]) / len(texts)
+    
+    print(f"Average text length: {average_length} words")
+    print(f"Average distinct words: {average_distinct_words} words")
+    
     all_token_ids = list(range(tokenizer.get_vocab_size()))
     all_tokens = np.array(tokenizer.convert_ids_to_tokens(all_token_ids))
     for idx in tqdm(range(0, len(ids), cfg.batch_size)):

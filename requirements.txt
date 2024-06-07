@@ -12,3 +12,5 @@ wandb
 accelerate
 ir-measures
 codecarbon
+numba
+h5py
