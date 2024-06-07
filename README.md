@@ -1,3 +1,9 @@
+
+# Applying Learned Sparse Retrieval
+In this repository, the original LSR framework is expanded to support energy monitoring and the use of the WT10g dataset. This was done to get results for a [Master Thesis](https://gitlab.science.ru.nl/trust/master-thesis) on this subject. For users from Radboud University, a [GitLab repository](https://gitlab.science.ru.nl/trust/learned-sparse-retrieval-scripts) is available with example scripts to run the experiments on the cluster.
+
+## Original README
+
 <img src="images/logo.png" width=6%> ![](https://badgen.net/badge/lsr/instructions/red?icon=github) ![](https://badgen.net/badge/python/3.9.12/green?icon=python)
 [![DOI](https://zenodo.org/badge/586806249.svg)](https://zenodo.org/doi/10.5281/zenodo.10659499)
 
