@@ -14,3 +14,4 @@ ir-measures
 codecarbon
 numba
 h5py
+nltk
